@@ -11,6 +11,14 @@ const spotlightTitle = document.getElementById("spotlightTitle");
 const spotlightDescription = document.getElementById("spotlightDescription");
 const spotlightCategory = document.getElementById("spotlightCategory");
 const spotlightImage = document.getElementById("spotlightImage");
+const catalogModal = document.getElementById("catalogModal");
+const catalogModalClose = document.getElementById("catalogModalClose");
+const catalogModalSecondaryClose = document.getElementById("catalogModalSecondaryClose");
+const catalogModalLabel = document.getElementById("catalogModalLabel");
+const catalogModalTitle = document.getElementById("catalogModalTitle");
+const catalogModalDescription = document.getElementById("catalogModalDescription");
+const catalogModalCategory = document.getElementById("catalogModalCategory");
+const catalogModalImage = document.getElementById("catalogModalImage");
 const revealItems = document.querySelectorAll("[data-reveal]");
 const heroStage = document.querySelector(".hero-stage");
 const parallaxItems = heroStage ? heroStage.querySelectorAll("[data-parallax]") : [];
@@ -55,34 +63,83 @@ const updateCatalogCounter = (visibleCount, filter) => {
   catalogCounter.textContent = `${visibleCount} ${label}`;
 };
 
-const setSpotlight = (card) => {
-  if (!card || !spotlightTitle || !spotlightImage) {
-    return;
-  }
-
+const getCardData = (card) => {
   const categoryLabel = card.querySelector("span")?.textContent?.trim() || "Solucion";
   const title = card.querySelector("h3")?.textContent?.trim() || "";
   const description = card.querySelector("p")?.textContent?.trim() || "";
   const image = card.querySelector("img");
 
+  return {
+    categoryLabel,
+    title,
+    description,
+    category: card.dataset.category,
+    imageSrc: image?.src || "",
+    imageAlt: image?.alt || ""
+  };
+};
+
+const setSpotlight = (card) => {
+  if (!card || !spotlightTitle || !spotlightImage) {
+    return;
+  }
+
+  const cardData = getCardData(card);
+
   productCards.forEach((item) => item.classList.remove("is-active"));
   card.classList.add("is-active");
 
   if (spotlightLabel) {
-    spotlightLabel.textContent = categoryLabel;
+    spotlightLabel.textContent = cardData.categoryLabel;
   }
 
-  spotlightTitle.textContent = title;
-  spotlightDescription.textContent = description;
+  spotlightTitle.textContent = cardData.title;
+  spotlightDescription.textContent = cardData.description;
 
   if (spotlightCategory) {
-    spotlightCategory.textContent = card.dataset.category;
+    spotlightCategory.textContent = cardData.category;
   }
 
-  if (image) {
-    spotlightImage.src = image.src;
-    spotlightImage.alt = image.alt;
+  if (cardData.imageSrc) {
+    spotlightImage.src = cardData.imageSrc;
+    spotlightImage.alt = cardData.imageAlt;
   }
+};
+
+const openCatalogModal = (card) => {
+  if (!catalogModal || !catalogModalTitle || !card) {
+    return;
+  }
+
+  const cardData = getCardData(card);
+
+  if (catalogModalLabel) {
+    catalogModalLabel.textContent = cardData.categoryLabel;
+  }
+
+  catalogModalTitle.textContent = cardData.title;
+  catalogModalDescription.textContent = cardData.description;
+
+  if (catalogModalCategory) {
+    catalogModalCategory.textContent = cardData.category;
+  }
+
+  if (catalogModalImage && cardData.imageSrc) {
+    catalogModalImage.src = cardData.imageSrc;
+    catalogModalImage.alt = cardData.imageAlt;
+  }
+
+  catalogModal.hidden = false;
+  document.body.style.overflow = "hidden";
+};
+
+const closeCatalogModal = () => {
+  if (!catalogModal) {
+    return;
+  }
+
+  catalogModal.hidden = true;
+  document.body.style.overflow = "";
 };
 
 const applyFilter = (filter) => {
@@ -126,9 +183,46 @@ productCards.forEach((card) => {
       setSpotlight(card);
     }
   });
+
+  const cta = card.querySelector(".product-cta");
+  cta?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setSpotlight(card);
+    openCatalogModal(card);
+  });
+
+  if (!prefersReducedMotion.matches) {
+    card.addEventListener("pointermove", (event) => {
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width;
+      const y = (event.clientY - bounds.top) / bounds.height;
+      const rotateY = (x - 0.5) * 10;
+      const rotateX = (0.5 - y) * 10;
+
+      card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+    });
+
+    card.addEventListener("pointerleave", () => {
+      card.style.transform = "";
+    });
+  }
 });
 
 applyFilter("all");
+
+catalogModalClose?.addEventListener("click", closeCatalogModal);
+catalogModalSecondaryClose?.addEventListener("click", closeCatalogModal);
+catalogModal?.addEventListener("click", (event) => {
+  if (event.target === catalogModal) {
+    closeCatalogModal();
+  }
+});
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeCatalogModal();
+  }
+});
 
 if (revealItems.length) {
   if (prefersReducedMotion.matches) {
