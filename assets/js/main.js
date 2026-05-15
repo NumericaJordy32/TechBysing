@@ -1,6 +1,9 @@
 const nav = document.querySelector(".site-nav");
 const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
 const navCollapse = document.getElementById("mainNav");
+const siteLoader = document.getElementById("siteLoader");
+const scrollBar = document.getElementById("scrollBar");
+const scrollNode = document.getElementById("scrollNode");
 const filterButtons = document.querySelectorAll(".filter-btn");
 const productCards = document.querySelectorAll(".product-card");
 const whatsappForm = document.getElementById("whatsappForm");
@@ -18,9 +21,43 @@ const parallaxItems = heroStage ? heroStage.querySelectorAll("[data-parallax]") 
 const whatsappNumber = "593999457534";
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+document.body.classList.add("is-loading");
+
 if (window.lucide) {
   window.lucide.createIcons();
 }
+
+let loaderHidden = false;
+
+const hideLoader = () => {
+  if (loaderHidden) {
+    return;
+  }
+
+  loaderHidden = true;
+  siteLoader?.classList.add("is-hidden");
+  document.body.classList.remove("is-loading");
+};
+
+window.addEventListener("load", () => {
+  window.setTimeout(hideLoader, prefersReducedMotion.matches ? 120 : 760);
+});
+
+window.setTimeout(hideLoader, 1700);
+
+const updateScrollProgress = () => {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  const clamped = Math.max(0, Math.min(100, progress));
+
+  if (scrollBar) {
+    scrollBar.style.width = `${clamped}%`;
+  }
+
+  if (scrollNode) {
+    scrollNode.style.left = `${clamped}%`;
+  }
+};
 
 const updateNav = () => {
   if (!nav) {
@@ -28,6 +65,7 @@ const updateNav = () => {
   }
 
   nav.classList.toggle("is-scrolled", window.scrollY > 14);
+  updateScrollProgress();
 };
 
 updateNav();

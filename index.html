@@ -37,6 +37,33 @@
     <link rel="stylesheet" href="assets/css/styles.css?v=20260514">
   </head>
   <body>
+    <div class="site-loader" id="siteLoader" aria-live="polite" aria-label="Cargando BYSING Tech Computacion">
+      <div class="loader-panel">
+        <div class="loader-brand">
+          <img src="assets/images/bysing-logo.jpeg" alt="Logo BYSING Tech Computacion">
+          <span>
+            <strong>BYSING</strong>
+            <small>Tech Computacion</small>
+          </span>
+        </div>
+        <div class="loader-core" aria-hidden="true">
+          <span class="loader-grid"></span>
+          <span class="loader-scan"></span>
+          <i data-lucide="cpu"></i>
+        </div>
+        <div class="loader-copy">
+          <strong>Inicializando infraestructura</strong>
+          <span>Redes, data center, soporte y continuidad.</span>
+        </div>
+        <div class="loader-progress" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+
+    <div class="scroll-rig" aria-hidden="true">
+      <span class="scroll-bar" id="scrollBar"></span>
+      <span class="scroll-node" id="scrollNode"><i data-lucide="radio-tower"></i></span>
+    </div>
+
     <header class="site-header">
       <nav class="navbar navbar-expand-lg site-nav" aria-label="Navegacion principal">
         <div class="container-fluid px-lg-5">
@@ -196,6 +223,34 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="quick-strip" aria-label="Canales de contacto rapido">
+        <a class="strip-item" href="tel:+593022331956">
+          <i data-lucide="phone-call"></i>
+          <span>Telefono</span>
+          <strong>(593) 02 2331956</strong>
+        </a>
+        <a class="strip-item" href="https://wa.me/593999457534" target="_blank" rel="noopener">
+          <i data-lucide="message-circle"></i>
+          <span>WhatsApp</span>
+          <strong>0999457534</strong>
+        </a>
+        <a class="strip-item" href="mailto:contacto@bysing.com">
+          <i data-lucide="mail"></i>
+          <span>Email</span>
+          <strong>contacto@bysing.com</strong>
+        </a>
+        <a
+          class="strip-item"
+          href="https://www.google.com/maps/search/?api=1&query=Urb.%20La%20Colina%2C%20Calle%20Manabi%20No.%20400%20y%20Guayas%2C%20Sangolqui"
+          target="_blank"
+          rel="noopener"
+        >
+          <i data-lucide="map-pin"></i>
+          <span>Direccion</span>
+          <strong>Sangolqui, Ecuador</strong>
+        </a>
       </section>
 
       <section class="section section-solutions" id="soluciones">

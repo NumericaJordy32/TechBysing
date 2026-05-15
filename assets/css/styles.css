@@ -59,6 +59,167 @@ a {
   text-decoration: none;
 }
 
+body.is-loading {
+  overflow: hidden;
+}
+
+.site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  color: var(--white);
+  background:
+    linear-gradient(90deg, rgba(130, 173, 236, 0.12) 1px, transparent 1px),
+    linear-gradient(rgba(130, 173, 236, 0.1) 1px, transparent 1px),
+    linear-gradient(135deg, #06101f 0%, #0a1e3b 48%, #08284f 100%);
+  background-size: 70px 70px, 70px 70px, auto;
+  transition: opacity 320ms ease, visibility 320ms ease;
+}
+
+.site-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-panel {
+  width: min(520px, 100%);
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(20px);
+}
+
+.loader-brand,
+.loader-copy {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.loader-brand img {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.loader-brand span,
+.loader-copy {
+  display: grid;
+}
+
+.loader-brand strong,
+.loader-copy strong {
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.loader-brand small,
+.loader-copy span {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.loader-core {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 150px;
+  margin: 1.15rem 0;
+  overflow: hidden;
+  border: 1px solid rgba(130, 173, 236, 0.22);
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(135deg, rgba(12, 36, 68, 0.92), rgba(9, 23, 47, 0.88)),
+    linear-gradient(90deg, rgba(130, 173, 236, 0.14) 1px, transparent 1px);
+}
+
+.loader-core svg {
+  position: relative;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  color: #91d7ff;
+  filter: drop-shadow(0 0 18px rgba(93, 186, 255, 0.45));
+}
+
+.loader-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(130, 173, 236, 0.16) 1px, transparent 1px),
+    linear-gradient(rgba(130, 173, 236, 0.12) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.loader-scan {
+  position: absolute;
+  inset: -40% 0 auto;
+  height: 55%;
+  background: linear-gradient(180deg, transparent, rgba(84, 196, 255, 0.25), transparent);
+  animation: loaderScan 1.55s ease-in-out infinite;
+}
+
+.loader-progress {
+  height: 7px;
+  margin-top: 1.1rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.loader-progress span {
+  display: block;
+  height: 100%;
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--blue), #62d5ff, var(--orange));
+  animation: loaderProgress 1.45s ease-in-out infinite;
+}
+
+.scroll-rig {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 120;
+  height: 4px;
+  pointer-events: none;
+  background: rgba(6, 17, 31, 0.3);
+}
+
+.scroll-bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), #62d5ff, var(--orange));
+  box-shadow: 0 0 18px rgba(98, 213, 255, 0.42);
+}
+
+.scroll-node {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 50%;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--blue), var(--orange));
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  transform: translate(-50%, -50%);
+}
+
+.scroll-node svg {
+  width: 16px;
+  height: 16px;
+}
+
 .site-header {
   position: fixed;
   inset: 0 0 auto;
@@ -651,6 +812,64 @@ a {
   width: 17px;
   height: 17px;
   color: #8fd2ff;
+}
+
+.quick-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  color: var(--white);
+  background:
+    linear-gradient(90deg, rgba(11, 95, 184, 0.95), rgba(8, 23, 47, 0.98) 54%, rgba(244, 122, 24, 0.92)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.strip-item {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 0.8rem;
+  row-gap: 0.15rem;
+  padding: 1.05rem 1.25rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.strip-item:last-child {
+  border-right: 0;
+}
+
+.strip-item:hover,
+.strip-item:focus {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.strip-item svg {
+  grid-row: span 2;
+  width: 24px;
+  height: 24px;
+  color: #91d7ff;
+}
+
+.strip-item span {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.strip-item strong {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .section {
@@ -1512,6 +1731,27 @@ a {
   }
 }
 
+@keyframes loaderScan {
+  0% {
+    transform: translateY(-40%);
+  }
+
+  100% {
+    transform: translateY(260%);
+  }
+}
+
+@keyframes loaderProgress {
+  0% {
+    transform: scaleX(0.08);
+  }
+
+  70%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1625,6 +1865,18 @@ a {
     justify-content: flex-start;
   }
 
+  .quick-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .strip-item:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .strip-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
   .catalog-spotlight {
     grid-template-columns: 1fr;
   }
@@ -1670,6 +1922,18 @@ a {
 
   .hero-copy {
     font-size: 1rem;
+  }
+
+  .loader-panel {
+    padding: 1rem;
+  }
+
+  .quick-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .strip-item {
+    border-right: 0;
   }
 
   .hero-proof {
