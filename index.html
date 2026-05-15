@@ -387,7 +387,7 @@
                 <h3>Cableado estructurado Cat 6 / 6A</h3>
                 <p>Cable UTP, F-UTP, conectores, jacks, patch cords, patch panels, racks e instalacion certificada.</p>
               </div>
-              <button class="product-cta" type="button">Ver foco</button>
+              <button class="product-cta" type="button">Ver detalle</button>
             </article>
             <article class="product-card" data-category="infra" data-reveal="up">
               <img src="assets/images/catalog/image22.jpeg" alt="Fibra optica instalada en bandeja">
@@ -396,7 +396,7 @@
                 <h3>Fusion, materiales y certificacion</h3>
                 <p>Fibra multimodo y monomodo, conectores LC/SC, bandejas, patch cords y pruebas de enlace.</p>
               </div>
-              <button class="product-cta" type="button">Ver foco</button>
+              <button class="product-cta" type="button">Ver detalle</button>
             </article>
             <article class="product-card" data-category="infra" data-reveal="up">
               <img src="assets/images/catalog/image11.png" alt="Switches de red empresariales">
@@ -405,7 +405,7 @@
                 <h3>Switching y wireless empresarial</h3>
                 <p>Equipos D-Link, Cisco, HPE y alternativas para redes de pequena y mediana empresa.</p>
               </div>
-              <button class="product-cta" type="button">Ver foco</button>
+              <button class="product-cta" type="button">Ver detalle</button>
             </article>
             <article class="product-card" data-category="infra" data-reveal="up">
               <img src="assets/images/catalog/image14.png" alt="UPS para proteccion electrica">
@@ -414,7 +414,7 @@
                 <h3>UPS, racks y enfriamiento</h3>
                 <p>Proteccion electrica, gabinetes especializados y enfriamiento APC para cuartos de equipos.</p>
               </div>
-              <button class="product-cta" type="button">Ver foco</button>
+              <button class="product-cta" type="button">Ver detalle</button>
             </article>
             <article class="product-card" data-category="equipos" data-reveal="up">
               <img src="assets/images/catalog/image7.png" alt="Servidor HP">
@@ -423,7 +423,7 @@
                 <h3>Procesamiento y almacenamiento</h3>
                 <p>Servidores, almacenamiento, procesadores Intel Xeon, discos SSD, SAS y SATA.</p>
               </div>
-              <button class="product-cta" type="button">Ver foco</button>
+              <button class="product-cta" type="button">Ver detalle</button>
             </article>
             <article class="product-card" data-category="equipos" data-reveal="up">
               <img src="assets/images/catalog/image5.png" alt="Laptop HP">
@@ -432,7 +432,7 @@
                 <h3>Laptops, PCs y equipos personalizados</h3>
                 <p>Equipos HP, Dell y clones con componentes seleccionados segun operacion y presupuesto.</p>
               </div>
-              <button class="product-cta" type="button">Ver foco</button>
+              <button class="product-cta" type="button">Ver detalle</button>
             </article>
             <article class="product-card" data-category="equipos suministros" data-reveal="up">
               <img src="assets/images/catalog/image10.png" alt="Impresoras de oficina">
@@ -441,7 +441,7 @@
                 <h3>Impresoras y consumibles</h3>
                 <p>Equipos laser e inyeccion HP y Epson, toners, tintas y consumibles de oficina.</p>
               </div>
-              <button class="product-cta" type="button">Ver foco</button>
+              <button class="product-cta" type="button">Ver detalle</button>
             </article>
             <article class="product-card" data-category="seguridad" data-reveal="up">
               <img src="assets/images/catalog/image27.png" alt="Camara HIKVISION">
@@ -450,7 +450,7 @@
                 <h3>CCTV IP, NVR y camaras</h3>
                 <p>Soluciones HIKVISION para interior, exterior y monitoreo centralizado.</p>
               </div>
-              <button class="product-cta" type="button">Ver foco</button>
+              <button class="product-cta" type="button">Ver detalle</button>
             </article>
             <article class="product-card" data-category="seguridad" data-reveal="up">
               <img src="assets/images/catalog/image29.png" alt="Sistema de videoconferencia Grandstream">
@@ -459,7 +459,7 @@
                 <h3>Telefonia IP y videoconferencia</h3>
                 <p>Comunicaciones unificadas Grandstream, audio, video y salas conectadas.</p>
               </div>
-              <button class="product-cta" type="button">Ver foco</button>
+              <button class="product-cta" type="button">Ver detalle</button>
             </article>
             <article class="product-card" data-category="suministros" data-reveal="up">
               <img src="assets/images/catalog/image1.png" alt="Software Microsoft Office">
@@ -468,8 +468,39 @@
                 <h3>Ofimatica, antivirus y herramientas</h3>
                 <p>Licenciamiento, antivirus y software especializado para estaciones de trabajo.</p>
               </div>
-              <button class="product-cta" type="button">Ver foco</button>
+              <button class="product-cta" type="button">Ver detalle</button>
             </article>
+          </div>
+
+          <div class="catalog-modal-backdrop" id="catalogModal" hidden>
+            <div class="catalog-modal glass-card" role="dialog" aria-modal="true" aria-labelledby="catalogModalTitle">
+              <button class="catalog-modal-close" id="catalogModalClose" type="button" aria-label="Cerrar detalle">
+                <i data-lucide="x"></i>
+              </button>
+              <div class="catalog-modal-media">
+                <img id="catalogModalImage" src="assets/images/catalog/image17.jpeg" alt="Detalle de producto BYSING">
+              </div>
+              <div class="catalog-modal-copy">
+                <p class="catalog-modal-label" id="catalogModalLabel">Redes</p>
+                <h3 id="catalogModalTitle">Cableado estructurado Cat 6 / 6A</h3>
+                <p id="catalogModalDescription">
+                  Cable UTP, F-UTP, conectores, jacks, patch cords, patch panels, racks e instalacion certificada.
+                </p>
+                <div class="catalog-modal-tags">
+                  <span id="catalogModalCategory">infra</span>
+                  <span>Portafolio BYSING</span>
+                </div>
+                <div class="catalog-modal-actions">
+                  <a class="btn btn-whatsapp action-btn" href="#contacto">
+                    <i data-lucide="message-circle"></i>
+                    Solicitar por WhatsApp
+                  </a>
+                  <button class="btn btn-outline-light action-btn" id="catalogModalSecondaryClose" type="button">
+                    Seguir explorando
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
