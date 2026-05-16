@@ -4070,3 +4070,446 @@ body.is-loading {
     margin-top: 0;
   }
 }
+
+/* Soluciones timeline */
+.section-solutions .section-heading {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-solutions .solution-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.55rem;
+  max-width: 1120px;
+  margin: 3.2rem auto 0;
+}
+
+.section-solutions .solution-grid::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 1.4rem;
+  bottom: 1.4rem;
+  width: 2px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, transparent, rgba(244, 122, 24, 0.9), rgba(98, 213, 255, 0.86), rgba(244, 122, 24, 0.78), transparent);
+  box-shadow:
+    0 0 24px rgba(98, 213, 255, 0.22),
+    0 0 42px rgba(244, 122, 24, 0.14);
+  transform: translateX(-50%);
+}
+
+.section-solutions .solution-card {
+  width: calc(50% - 3rem);
+  min-height: auto;
+  padding: 1.25rem 1.25rem 1.15rem;
+  border-radius: 18px;
+  transform: none;
+}
+
+.section-solutions .solution-card:nth-child(odd) {
+  justify-self: start;
+}
+
+.section-solutions .solution-card:nth-child(even) {
+  justify-self: end;
+}
+
+.section-solutions .solution-card.featured {
+  transform: none;
+}
+
+.section-solutions .solution-card::before {
+  content: "01";
+  position: absolute;
+  top: 1.25rem;
+  right: calc(-3rem - 23px);
+  z-index: 3;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  color: #071426;
+  background: linear-gradient(135deg, #ff9b3d, #62d5ff);
+  box-shadow:
+    0 0 0 8px rgba(8, 23, 47, 0.9),
+    0 16px 34px rgba(0, 0, 0, 0.26),
+    0 0 26px rgba(98, 213, 255, 0.22);
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.section-solutions .solution-card:nth-child(2)::before {
+  content: "02";
+}
+
+.section-solutions .solution-card:nth-child(3)::before {
+  content: "03";
+}
+
+.section-solutions .solution-card:nth-child(4)::before {
+  content: "04";
+}
+
+.section-solutions .solution-card:nth-child(even)::before {
+  left: calc(-3rem - 23px);
+  right: auto;
+}
+
+.section-solutions .solution-card::after {
+  content: "";
+  position: absolute;
+  top: calc(1.25rem + 22px);
+  right: -3rem;
+  bottom: auto;
+  width: 3rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(244, 122, 24, 0.72), rgba(98, 213, 255, 0.72));
+}
+
+.section-solutions .solution-card:nth-child(even)::after {
+  left: -3rem;
+  right: auto;
+  background: linear-gradient(90deg, rgba(98, 213, 255, 0.72), rgba(244, 122, 24, 0.72));
+}
+
+.section-solutions .solution-card:hover {
+  transform: none;
+  border-color: rgba(143, 198, 255, 0.32);
+  box-shadow: 0 34px 78px rgba(4, 13, 27, 0.34);
+}
+
+.section-solutions .solution-card:hover .icon-pin {
+  transform: none;
+}
+
+.section-solutions .icon-pin {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+}
+
+.section-solutions .icon-pin::after {
+  left: calc(100% + 0.8rem);
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: min(18rem, 58vw);
+  overflow: hidden;
+  color: rgba(220, 235, 255, 0.72);
+  text-overflow: ellipsis;
+}
+
+.section-solutions .solution-card h3 {
+  margin-top: 1.3rem;
+}
+
+.section-solutions .solution-card strong {
+  display: block;
+  margin-top: auto;
+  padding-top: 0.35rem;
+}
+
+@media (max-width: 991px) {
+  .section-solutions .solution-grid {
+    gap: 1rem;
+    max-width: 760px;
+    margin-top: 2.5rem;
+    padding-left: 4.2rem;
+  }
+
+  .section-solutions .solution-grid::before {
+    left: 1.35rem;
+  }
+
+  .section-solutions .solution-card,
+  .section-solutions .solution-card:nth-child(odd),
+  .section-solutions .solution-card:nth-child(even) {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .section-solutions .solution-card::before,
+  .section-solutions .solution-card:nth-child(even)::before {
+    left: -4.2rem;
+    right: auto;
+  }
+
+  .section-solutions .solution-card::after,
+  .section-solutions .solution-card:nth-child(even)::after {
+    left: -1.9rem;
+    right: auto;
+    width: 1.9rem;
+    background: linear-gradient(90deg, rgba(98, 213, 255, 0.72), rgba(244, 122, 24, 0.72));
+  }
+}
+
+@media (max-width: 575px) {
+  .section-solutions .solution-grid {
+    padding-left: 3.25rem;
+  }
+
+  .section-solutions .solution-grid::before {
+    left: 1rem;
+  }
+
+  .section-solutions .solution-card {
+    padding: 1.05rem;
+    border-radius: 16px;
+  }
+
+  .section-solutions .solution-card::before,
+  .section-solutions .solution-card:nth-child(even)::before {
+    left: -3.25rem;
+    width: 40px;
+    height: 40px;
+    font-size: 0.78rem;
+    box-shadow:
+      0 0 0 6px rgba(8, 23, 47, 0.9),
+      0 14px 30px rgba(0, 0, 0, 0.24);
+  }
+
+  .section-solutions .solution-card::after,
+  .section-solutions .solution-card:nth-child(even)::after {
+    left: -1.35rem;
+    width: 1.35rem;
+  }
+
+  .section-solutions .icon-pin::after {
+    max-width: calc(100vw - 10rem);
+    font-size: 0.66rem;
+  }
+}
+
+/* Soluciones timeline refinement: numbers live inside the icon blocks. */
+.section-solutions .solution-grid {
+  counter-reset: solution-step;
+  isolation: isolate;
+}
+
+.section-solutions .solution-grid::after {
+  content: "";
+  position: absolute;
+  inset: -2.4rem 8% -2rem;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(98, 213, 255, 0.32) 0 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(244, 122, 24, 0.34) 0 1px, transparent 1.8px),
+    linear-gradient(90deg, transparent 0 48%, rgba(98, 213, 255, 0.14) 48.2% 48.35%, transparent 48.55% 100%),
+    linear-gradient(0deg, transparent 0 48%, rgba(244, 122, 24, 0.12) 48.2% 48.35%, transparent 48.55% 100%);
+  background-position: 0 0, 46px 64px, center, center;
+  background-size: 132px 132px, 190px 190px, 86px 86px, 86px 86px;
+  opacity: 0.5;
+  mask-image: radial-gradient(ellipse at center, #000 0 42%, transparent 78%);
+}
+
+.section-solutions .solution-card {
+  counter-increment: solution-step;
+  z-index: 1;
+}
+
+.section-solutions .solution-card::before,
+.section-solutions .solution-card:nth-child(2)::before,
+.section-solutions .solution-card:nth-child(3)::before,
+.section-solutions .solution-card:nth-child(4)::before,
+.section-solutions .solution-card:nth-child(even)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 0;
+  width: auto;
+  height: auto;
+  display: block;
+  border: 0;
+  border-radius: inherit;
+  color: inherit;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 18% 20%, rgba(98, 213, 255, 0.16), transparent 24%),
+    radial-gradient(circle at 92% 12%, rgba(244, 122, 24, 0.13), transparent 28%);
+  background-size: 34px 34px, 34px 34px, auto, auto;
+  box-shadow: none;
+  opacity: 0.72;
+  pointer-events: none;
+  transform: none;
+}
+
+.section-solutions .solution-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.section-solutions .icon-pin {
+  position: relative;
+  overflow: visible;
+  color: #071426;
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.42), transparent 32%),
+    linear-gradient(135deg, #ffb45c, #62d5ff);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 14px 30px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.section-solutions .icon-pin svg {
+  display: none;
+}
+
+.section-solutions .icon-pin::before {
+  content: counter(solution-step, decimal-leading-zero);
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.section-solutions .icon-pin::after {
+  color: rgba(220, 235, 255, 0.78);
+  text-shadow: 0 0 18px rgba(98, 213, 255, 0.18);
+}
+
+.section-solutions .solution-card::after {
+  z-index: 0;
+}
+
+.section-solutions .solution-card:nth-child(odd)::after {
+  right: -3rem;
+}
+
+.section-solutions .solution-card:nth-child(even)::after {
+  left: -3rem;
+}
+
+.section-solutions .solution-card h3,
+.section-solutions .solution-card p,
+.section-solutions .solution-card strong {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 991px) {
+  .section-solutions .solution-grid::after {
+    inset: -1.6rem 0 -1rem 0;
+    mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  .section-solutions .solution-card::before,
+  .section-solutions .solution-card:nth-child(2)::before,
+  .section-solutions .solution-card:nth-child(3)::before,
+  .section-solutions .solution-card:nth-child(4)::before,
+  .section-solutions .solution-card:nth-child(even)::before {
+    left: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+  }
+
+  .section-solutions .solution-card::after,
+  .section-solutions .solution-card:nth-child(even)::after {
+    left: -1.9rem;
+    right: auto;
+  }
+}
+
+@media (max-width: 575px) {
+  .section-solutions .icon-pin::before {
+    font-size: 0.8rem;
+  }
+
+  .section-solutions .icon-pin::after {
+    max-width: calc(100vw - 10rem);
+  }
+
+  .section-solutions .solution-card::after,
+  .section-solutions .solution-card:nth-child(even)::after {
+    left: -1.35rem;
+  }
+}
+
+/* Connected "spore" network for Soluciones, matching the reference style. */
+.section-solutions {
+  isolation: isolate;
+}
+
+.section-solutions > .container-fluid {
+  position: relative;
+  z-index: 2;
+}
+
+.section-solutions::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 420'%3E%3Cg fill='none' stroke='%2348d7ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath opacity='.24' d='M40 122 132 166 190 72 252 140 360 152 436 58 540 98 638 42 746 84 820 166 938 128 1040 202 1136 166'/%3E%3Cpath opacity='.18' d='M190 72 264 -24 360 152 428 250 540 98 608 210 746 84 758 250 820 166 916 268 1040 202 1136 318'/%3E%3Cpath opacity='.16' d='M132 166 252 140 428 250 608 210 758 250 916 268 1136 318'/%3E%3Cpath opacity='.14' d='M638 42 704 -18 746 84 826 18 938 128'/%3E%3C/g%3E%3Cg fill='%2362d5ff'%3E%3Ccircle opacity='.72' cx='40' cy='122' r='4'/%3E%3Ccircle opacity='.6' cx='132' cy='166' r='3.2'/%3E%3Ccircle opacity='.66' cx='190' cy='72' r='3.4'/%3E%3Ccircle opacity='.62' cx='252' cy='140' r='3.4'/%3E%3Ccircle opacity='.52' cx='360' cy='152' r='3.2'/%3E%3Ccircle opacity='.72' cx='436' cy='58' r='4'/%3E%3Ccircle opacity='.56' cx='540' cy='98' r='3.5'/%3E%3Ccircle opacity='.72' cx='638' cy='42' r='4.2'/%3E%3Ccircle opacity='.7' cx='746' cy='84' r='4'/%3E%3Ccircle opacity='.55' cx='820' cy='166' r='3.2'/%3E%3Ccircle opacity='.65' cx='938' cy='128' r='3.8'/%3E%3Ccircle opacity='.66' cx='1040' cy='202' r='3.8'/%3E%3Ccircle opacity='.72' cx='1136' cy='166' r='4.2'/%3E%3Ccircle opacity='.48' cx='428' cy='250' r='3.2'/%3E%3Ccircle opacity='.5' cx='608' cy='210' r='3.3'/%3E%3Ccircle opacity='.64' cx='758' cy='250' r='4'/%3E%3Ccircle opacity='.5' cx='916' cy='268' r='3.4'/%3E%3Ccircle opacity='.48' cx='1136' cy='318' r='3.5'/%3E%3C/g%3E%3Cg fill='%23d7e8ff'%3E%3Ccircle opacity='.5' cx='820' cy='166' r='4.4'/%3E%3Ccircle opacity='.48' cx='938' cy='128' r='4.5'/%3E%3C/g%3E%3C/svg%3E") top center / min(1200px, 112vw) 420px no-repeat,
+    linear-gradient(90deg, rgba(98, 213, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(98, 213, 255, 0.028) 1px, transparent 1px);
+  background-size: min(1200px, 112vw) 420px, 74px 74px, 74px 74px;
+  opacity: 0.9;
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.86) 58%, transparent 100%);
+}
+
+.section-solutions::after {
+  content: "";
+  position: absolute;
+  top: 3.4rem;
+  left: clamp(1.25rem, 5vw, 4.4rem);
+  z-index: 1;
+  width: clamp(2.15rem, 4vw, 3.15rem);
+  height: clamp(2.15rem, 4vw, 3.15rem);
+  border: 1px solid rgba(98, 213, 255, 0.72);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 24%, rgba(98, 213, 255, 0.42), transparent 28%),
+    radial-gradient(circle, rgba(98, 213, 255, 0.2), rgba(6, 20, 38, 0.1) 64%, transparent 68%);
+  box-shadow:
+    inset 0 0 18px rgba(98, 213, 255, 0.25),
+    0 0 28px rgba(98, 213, 255, 0.24);
+}
+
+.section-solutions .solution-grid::after {
+  inset: -3.2rem 4% -2.4rem;
+  z-index: 0;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 980 760'%3E%3Cg fill='none' stroke='%2362d5ff' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath opacity='.2' d='M74 84 168 148 276 114 386 204 500 164 612 248 728 198 856 284'/%3E%3Cpath opacity='.16' d='M168 148 236 302 386 204 446 390 612 248 704 430 856 284 910 496'/%3E%3Cpath opacity='.18' d='M74 512 210 438 328 550 446 390 590 548 704 430 910 496'/%3E%3Cpath opacity='.12' d='M210 438 236 302 328 550 590 548 646 668 910 496'/%3E%3C/g%3E%3Cg fill='%2362d5ff'%3E%3Ccircle opacity='.48' cx='74' cy='84' r='3.5'/%3E%3Ccircle opacity='.54' cx='168' cy='148' r='3.8'/%3E%3Ccircle opacity='.46' cx='276' cy='114' r='3.2'/%3E%3Ccircle opacity='.58' cx='386' cy='204' r='4'/%3E%3Ccircle opacity='.52' cx='500' cy='164' r='3.4'/%3E%3Ccircle opacity='.5' cx='612' cy='248' r='3.5'/%3E%3Ccircle opacity='.58' cx='728' cy='198' r='4'/%3E%3Ccircle opacity='.48' cx='856' cy='284' r='3.4'/%3E%3Ccircle opacity='.42' cx='236' cy='302' r='3.2'/%3E%3Ccircle opacity='.48' cx='446' cy='390' r='3.7'/%3E%3Ccircle opacity='.46' cx='704' cy='430' r='3.4'/%3E%3Ccircle opacity='.5' cx='910' cy='496' r='3.7'/%3E%3Ccircle opacity='.5' cx='74' cy='512' r='3.5'/%3E%3Ccircle opacity='.46' cx='210' cy='438' r='3.2'/%3E%3Ccircle opacity='.52' cx='328' cy='550' r='3.8'/%3E%3Ccircle opacity='.44' cx='590' cy='548' r='3.3'/%3E%3Ccircle opacity='.46' cx='646' cy='668' r='3.4'/%3E%3C/g%3E%3C/svg%3E") center / min(980px, 100%) 760px no-repeat;
+  opacity: 0.74;
+  mask-image: radial-gradient(ellipse at center, #000 0 54%, transparent 84%);
+}
+
+@media (max-width: 767px) {
+  .section-solutions::before {
+    background-position: top left, 0 0, 0 0;
+    background-size: 820px 330px, 64px 64px, 64px 64px;
+    opacity: 0.72;
+  }
+
+  .section-solutions::after {
+    top: 1.5rem;
+    left: 1rem;
+  }
+
+  .section-solutions .solution-grid::after {
+    inset: -1rem -0.5rem -1rem -3rem;
+    background-size: 720px 560px;
+    opacity: 0.48;
+  }
+}
