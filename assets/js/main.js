@@ -2,6 +2,8 @@ const nav = document.querySelector(".site-nav");
 const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
 const navCollapse = document.getElementById("mainNav");
 const siteLoader = document.getElementById("siteLoader");
+const loaderTitle = siteLoader?.querySelector(".loader-title-shell");
+const brandLockup = document.querySelector(".brand-lockup");
 const scrollBar = document.getElementById("scrollBar");
 const scrollNode = document.getElementById("scrollNode");
 const filterButtons = document.querySelectorAll(".filter-btn");
@@ -25,17 +27,31 @@ const catalogModalImage = document.getElementById("catalogModalImage");
 const revealItems = document.querySelectorAll("[data-reveal]");
 const heroStage = document.querySelector(".hero-stage");
 const parallaxItems = heroStage ? heroStage.querySelectorAll("[data-parallax]") : [];
+const catalogOrbitStage = document.querySelector(".catalog-orbit-stage");
 
 const whatsappNumber = "593999457534";
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 document.body.classList.add("is-loading");
 
-if (window.lucide) {
-  window.lucide.createIcons();
-}
+const createLucideIcons = () => {
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+};
+
+createLucideIcons();
 
 let loaderHidden = false;
+const loaderStartedAt = window.performance ? window.performance.now() : Date.now();
+const minimumLoaderTime = prefersReducedMotion.matches ? 120 : 2500;
+const maximumLoaderTime = prefersReducedMotion.matches ? 700 : 5200;
+
+const finishLoader = () => {
+  siteLoader?.classList.add("is-hidden");
+  brandLockup?.classList.remove("is-loader-target");
+  document.body.classList.remove("is-loading");
+};
 
 const hideLoader = () => {
   if (loaderHidden) {
@@ -43,15 +59,45 @@ const hideLoader = () => {
   }
 
   loaderHidden = true;
-  siteLoader?.classList.add("is-hidden");
+
+  if (!siteLoader || !loaderTitle || !brandLockup || prefersReducedMotion.matches) {
+    finishLoader();
+    return;
+  }
+
+  const sourceRect = loaderTitle.getBoundingClientRect();
+  const targetRect = brandLockup.getBoundingClientRect();
+  const sourceCenterX = sourceRect.left + sourceRect.width / 2;
+  const sourceCenterY = sourceRect.top + sourceRect.height / 2;
+  const targetCenterX = targetRect.left + targetRect.width / 2;
+  const targetCenterY = targetRect.top + targetRect.height / 2;
+  const targetScale = Math.max(0.22, Math.min(0.42, targetRect.height / sourceRect.height));
+
+  siteLoader.style.setProperty("--loader-exit-x", `${targetCenterX - sourceCenterX}px`);
+  siteLoader.style.setProperty("--loader-exit-y", `${targetCenterY - sourceCenterY}px`);
+  siteLoader.style.setProperty("--loader-exit-scale", targetScale.toFixed(3));
+
+  brandLockup.classList.add("is-loader-target");
   document.body.classList.remove("is-loading");
+  siteLoader.classList.add("is-leaving");
+
+  window.setTimeout(finishLoader, 1450);
+};
+
+const scheduleLoaderHide = () => {
+  const now = window.performance ? window.performance.now() : Date.now();
+  const elapsed = now - loaderStartedAt;
+  const remaining = Math.max(0, minimumLoaderTime - elapsed);
+
+  window.setTimeout(hideLoader, remaining);
 };
 
 window.addEventListener("load", () => {
-  window.setTimeout(hideLoader, prefersReducedMotion.matches ? 120 : 760);
+  createLucideIcons();
+  scheduleLoaderHide();
 });
 
-window.setTimeout(hideLoader, 1700);
+window.setTimeout(hideLoader, maximumLoaderTime);
 
 const updateScrollProgress = () => {
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -229,21 +275,19 @@ productCards.forEach((card) => {
     openCatalogModal(card);
   });
 
-  if (!prefersReducedMotion.matches) {
-    card.addEventListener("pointermove", (event) => {
-      const bounds = card.getBoundingClientRect();
-      const x = (event.clientX - bounds.left) / bounds.width;
-      const y = (event.clientY - bounds.top) / bounds.height;
-      const rotateY = (x - 0.5) * 10;
-      const rotateX = (0.5 - y) * 10;
+  card.addEventListener("pointermove", (event) => {
+    const bounds = card.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
 
-      card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-    });
+    card.style.setProperty("--card-glow-x", `${x}%`);
+    card.style.setProperty("--card-glow-y", `${y}%`);
+  });
 
-    card.addEventListener("pointerleave", () => {
-      card.style.transform = "";
-    });
-  }
+  card.addEventListener("pointerleave", () => {
+    card.style.removeProperty("--card-glow-x");
+    card.style.removeProperty("--card-glow-y");
+  });
 });
 
 applyFilter("all");
@@ -297,7 +341,8 @@ if (heroStage && parallaxItems.length && !prefersReducedMotion.matches) {
       const depth = Number(item.dataset.parallax || 0.08);
       const translateX = currentX * depth * 42;
       const translateY = currentY * depth * 34;
-      item.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+      item.style.setProperty("--parallax-x", `${translateX}px`);
+      item.style.setProperty("--parallax-y", `${translateY}px`);
     });
 
     frameId = null;
@@ -325,6 +370,42 @@ if (heroStage && parallaxItems.length && !prefersReducedMotion.matches) {
     currentX = 0;
     currentY = 0;
     scheduleParallax();
+  });
+}
+
+if (catalogOrbitStage && !prefersReducedMotion.matches) {
+  let catalogFrameId = null;
+  let orbitX = 0;
+  let orbitY = 0;
+
+  const applyCatalogOrbit = () => {
+    catalogOrbitStage.style.setProperty("--orbit-x", `${orbitX.toFixed(2)}deg`);
+    catalogOrbitStage.style.setProperty("--orbit-y", `${orbitY.toFixed(2)}deg`);
+    catalogFrameId = null;
+  };
+
+  const scheduleCatalogOrbit = () => {
+    if (catalogFrameId) {
+      return;
+    }
+
+    catalogFrameId = window.requestAnimationFrame(applyCatalogOrbit);
+  };
+
+  catalogOrbitStage.addEventListener("pointermove", (event) => {
+    const bounds = catalogOrbitStage.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+
+    orbitX = (0.5 - y) * 5;
+    orbitY = (x - 0.5) * 7;
+    scheduleCatalogOrbit();
+  });
+
+  catalogOrbitStage.addEventListener("pointerleave", () => {
+    orbitX = 0;
+    orbitY = 0;
+    scheduleCatalogOrbit();
   });
 }
 
