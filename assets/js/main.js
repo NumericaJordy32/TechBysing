@@ -11,8 +11,6 @@ const sectionNavItems = Array.from(navLinks)
 const siteLoader = document.getElementById("siteLoader");
 const loaderTitle = siteLoader?.querySelector(".loader-title-shell");
 const brandLockup = document.querySelector(".brand-lockup");
-const scrollBar = document.getElementById("scrollBar");
-const scrollNode = document.getElementById("scrollNode");
 const productCards = document.querySelectorAll(".product-card");
 const emailForm = document.getElementById("emailForm");
 const emailStatus = document.getElementById("emailStatus");
@@ -90,20 +88,6 @@ window.addEventListener("load", () => {
 
 window.setTimeout(hideLoader, maximumLoaderTime);
 
-const updateScrollProgress = () => {
-  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-  const clamped = Math.max(0, Math.min(100, progress));
-
-  if (scrollBar) {
-    scrollBar.style.width = `${clamped}%`;
-  }
-
-  if (scrollNode) {
-    scrollNode.style.left = `${clamped}%`;
-  }
-};
-
 let activeSectionId = "";
 
 const setActiveNavItem = (sectionId) => {
@@ -154,7 +138,6 @@ const updateNav = () => {
   }
 
   nav.classList.toggle("is-scrolled", window.scrollY > 14);
-  updateScrollProgress();
   updateActiveNavItem();
 };
 
