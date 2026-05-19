@@ -598,7 +598,6 @@ body.is-loading {
 }
 
 .site-nav .navbar-collapse {
-  display: flex !important;
   flex-basis: auto;
 }
 
@@ -2871,7 +2870,7 @@ body.is-loading {
 
 @media (max-width: 991px) {
   .site-nav .container-fluid {
-    align-items: flex-start;
+    align-items: center;
     gap: 0.6rem;
   }
 
@@ -2880,13 +2879,15 @@ body.is-loading {
     flex-basis: 100%;
     margin-top: 0.55rem;
     padding-bottom: 0.25rem;
-    overflow-x: auto;
+    overflow-x: visible;
   }
 
   .site-nav .navbar-nav {
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    min-width: max-content;
   }
 
   .navbar .nav-link {
@@ -5518,7 +5519,7 @@ body.is-loading {
 
 @media (max-width: 991px) {
   .site-nav .navbar-nav {
-    width: max-content;
+    width: 100%;
     min-width: 100%;
     justify-content: flex-start;
     border-radius: 20px;
@@ -5526,7 +5527,8 @@ body.is-loading {
   }
 
   .navbar .nav-link {
-    min-width: max-content;
+    width: 100%;
+    min-width: 0;
   }
 }
 
@@ -6204,6 +6206,7 @@ video {
 
   .site-nav .navbar-nav {
     gap: 0.35rem;
+    flex-direction: column;
     align-items: stretch !important;
   }
 
@@ -6981,5 +6984,266 @@ main {
   .support-screen {
     left: 10%;
     right: 4%;
+  }
+}
+
+/* Mobile header lives in the page flow so it does not cover the hero. */
+@media (max-width: 991px) {
+  :root {
+    --nav-height: 86px;
+  }
+
+  .site-header {
+    position: sticky;
+    inset: auto;
+    top: 0;
+    padding: 0;
+    background: rgba(248, 251, 255, 0.97);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 14px 34px rgba(4, 13, 27, 0.14);
+  }
+
+  .site-nav,
+  .site-nav.is-scrolled {
+    min-height: var(--nav-height);
+    border-bottom: 1px solid rgba(107, 132, 168, 0.14);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .site-nav .container-fluid {
+    min-height: var(--nav-height);
+    align-items: center;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+  }
+
+  .site-nav .navbar-collapse:not(.show) {
+    display: none !important;
+  }
+
+  .site-nav .navbar-collapse.show,
+  .site-nav .navbar-collapse.collapsing {
+    display: block !important;
+  }
+
+  .site-nav .navbar-collapse {
+    margin-top: 0.7rem;
+    padding: 0.75rem;
+  }
+
+  .site-nav .navbar-nav {
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+  }
+
+  .site-nav .nav-link {
+    width: 100%;
+  }
+
+  .hero-section {
+    margin-top: 0;
+    padding-top: clamp(2.2rem, 7vw, 3.2rem);
+  }
+}
+
+@media (max-width: 575px) {
+  :root {
+    --nav-height: 80px;
+  }
+
+  .brand-lockup img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .navbar-toggler {
+    width: 54px;
+    height: 54px;
+    display: inline-grid;
+    place-items: center;
+  }
+
+  .hero-section {
+    margin-top: 0;
+    padding-top: 2rem;
+  }
+}
+
+/* Final mobile polish: readable contact CTA and tidy hero cards. */
+@media (max-width: 991px) {
+  .site-nav .navbar-nav .nav-link.nav-contact {
+    color: var(--white) !important;
+    border-color: rgba(244, 122, 24, 0.34);
+    background: linear-gradient(135deg, #071426 0%, #0b5fb8 100%) !important;
+    box-shadow: 0 14px 28px rgba(7, 20, 38, 0.18);
+  }
+
+  .site-nav .navbar-nav .nav-link.nav-contact::before {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-section {
+    min-height: auto;
+    padding-top: 1.8rem;
+    padding-bottom: 2.8rem;
+  }
+
+  .hero-shell {
+    min-height: auto;
+    gap: 1.35rem;
+  }
+
+  .hero-copy-block {
+    display: block;
+    max-width: none;
+  }
+
+  .hero-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    align-items: start;
+    gap: 0.9rem;
+    width: 100%;
+    min-height: auto !important;
+    padding-top: 0.4rem;
+  }
+
+  .hero-stage::before,
+  .hero-stage::after,
+  .hero-orbit {
+    display: none !important;
+  }
+
+  .hero-main-card,
+  .signal-card,
+  .hero-floating-metric,
+  .hero-badges {
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    animation: none !important;
+    width: min(100%, 19.5rem) !important;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .hero-main-card {
+    order: 1;
+    min-height: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .hero-visual-stack {
+    height: 17.5rem;
+    min-height: 0;
+  }
+
+  .hub-ring-one {
+    width: min(16rem, 74vw);
+    height: min(16rem, 74vw);
+  }
+
+  .hub-ring-two {
+    width: min(11.5rem, 54vw);
+    height: min(11.5rem, 54vw);
+  }
+
+  .hub-ring-three {
+    width: min(7.2rem, 34vw);
+    height: min(7.2rem, 34vw);
+  }
+
+  .hub-core {
+    width: min(8.4rem, 42vw);
+    height: min(8.4rem, 42vw);
+  }
+
+  .hub-core img {
+    width: 3.7rem;
+    height: 3.7rem;
+  }
+
+  .signal-card-top {
+    order: 2;
+  }
+
+  .metric-left {
+    order: 3;
+  }
+
+  .signal-card-bottom {
+    order: 4;
+  }
+
+  .metric-right {
+    order: 5;
+  }
+
+  .signal-card,
+  .hero-floating-metric {
+    min-height: auto;
+    padding: 0.92rem 1rem;
+    border-radius: 14px;
+    color: #12233d;
+    background: rgba(239, 246, 255, 0.96);
+    box-shadow: 0 16px 34px rgba(4, 13, 27, 0.16);
+    backdrop-filter: blur(12px);
+  }
+
+  .signal-card p,
+  .signal-copy p,
+  .hero-floating-metric span {
+    color: rgba(75, 91, 116, 0.82);
+  }
+
+  .signal-card strong,
+  .hero-floating-metric strong {
+    color: #12233d;
+  }
+
+  .hero-floating-metric p {
+    color: rgba(75, 91, 116, 0.86);
+  }
+
+  .hero-badges {
+    order: 6;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.58rem;
+    justify-content: stretch;
+  }
+
+  .hero-badges span {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.68rem 0.85rem;
+    font-size: 0.86rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .hero-stage {
+    gap: 0.8rem;
+  }
+
+  .hero-visual-stack {
+    height: 16rem;
+  }
+
+  .hero-main-card,
+  .signal-card,
+  .hero-floating-metric,
+  .hero-badges {
+    width: min(100%, 18.25rem) !important;
   }
 }

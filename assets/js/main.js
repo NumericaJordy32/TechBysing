@@ -1,6 +1,7 @@
 const nav = document.querySelector(".site-nav");
 const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
 const navCollapse = document.getElementById("mainNav");
+const navToggler = document.querySelector(".navbar-toggler");
 const sectionNavItems = Array.from(navLinks)
   .map((link) => ({
     link,
@@ -144,6 +145,24 @@ const updateNav = () => {
 updateNav();
 window.addEventListener("scroll", updateNav, { passive: true });
 
+const setMobileNavOpen = (isOpen) => {
+  if (!navCollapse) {
+    return;
+  }
+
+  navCollapse.classList.remove("collapsing");
+  navCollapse.classList.toggle("show", isOpen);
+  navToggler?.setAttribute("aria-expanded", String(isOpen));
+};
+
+navToggler?.addEventListener("click", () => {
+  if (window.bootstrap || !navCollapse) {
+    return;
+  }
+
+  setMobileNavOpen(!navCollapse.classList.contains("show"));
+});
+
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     if (link.hash) {
@@ -151,10 +170,12 @@ navLinks.forEach((link) => {
     }
 
     if (!navCollapse || !window.bootstrap) {
+      setMobileNavOpen(false);
       return;
     }
 
-    const instance = window.bootstrap.Collapse.getInstance(navCollapse);
+    const instance = window.bootstrap.Collapse.getInstance(navCollapse)
+      || window.bootstrap.Collapse.getOrCreateInstance(navCollapse, { toggle: false });
     if (instance) {
       instance.hide();
     }
