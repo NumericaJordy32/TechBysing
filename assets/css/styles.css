@@ -3464,11 +3464,12 @@ body.is-loading {
 .hub-core {
   position: relative;
   z-index: 4;
-  display: grid;
-  justify-items: center;
-  align-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 10.4rem;
   height: 10.4rem;
+  padding: 0.3rem;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 50%;
   background:
@@ -3479,26 +3480,10 @@ body.is-loading {
 }
 
 .hub-core img {
-  width: 4.55rem;
-  height: 4.55rem;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 0.52rem;
-}
-
-.hub-core strong {
-  font-family: "Space Grotesk", "Manrope", sans-serif;
-  font-size: 1.15rem;
-  line-height: 1;
-}
-
-.hub-core span {
-  margin-top: 0.22rem;
-  color: rgba(232, 241, 255, 0.72);
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
+  width: 9.2rem;
+  height: 9.2rem;
+  object-fit: contain;
+  display: block;
 }
 
 .hero-main-footer {
@@ -4029,14 +4014,15 @@ body.is-loading {
 .hub-core {
   width: 9.6rem;
   height: 9.6rem;
+  padding: 0.25rem;
   background:
     radial-gradient(circle at 35% 24%, rgba(255, 255, 255, 0.32), transparent 26%),
     linear-gradient(145deg, rgba(11, 95, 184, 0.98), #071225 88%);
 }
 
 .hub-core img {
-  width: 4.4rem;
-  height: 4.4rem;
+  width: 8.8rem;
+  height: 8.8rem;
 }
 
 .data-stream {
@@ -4224,6 +4210,7 @@ body.is-loading {
   .hub-core {
     width: 8.6rem;
     height: 8.6rem;
+    padding: 0.2rem;
   }
 
   .hero-badges {
