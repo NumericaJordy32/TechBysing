@@ -19,7 +19,7 @@ const revealItems = document.querySelectorAll("[data-reveal]");
 const heroStage = document.querySelector(".hero-stage");
 const parallaxItems = heroStage ? heroStage.querySelectorAll("[data-parallax]") : [];
 
-const contactEmail = "contacto@bysing.com";
+const contactEmail = "ssotomayor@bysing.com";
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 document.body.classList.add("is-loading");
