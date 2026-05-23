@@ -9,6 +9,8 @@
     >
     <title>BYSING Tech Computación | Infraestructura Tecnológica y Networking</title>
 
+    <link rel="icon" type="image/png" href="LogoTech.png">
+    <link rel="apple-touch-icon" href="LogoTech.png">
     <link rel="preload" as="image" href="assets/images/catalog/enhanced/image18-hq.webp">
     <link rel="preload" as="image" href="LogoTech.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -539,60 +541,139 @@
 
       <section class="section support-section" id="soporte">
         <div class="container-fluid px-lg-5">
-          <div class="support-layout">
-            <div class="support-intro">
-              <div class="section-heading compact" data-reveal="up">
-                <p class="eyebrow">Soporte técnico</p>
-                <h2>Del diagnóstico a la continuidad operativa</h2>
-                <p>
-                  Cada proyecto se aborda como una ruta de servicio: levantar información,
-                  diseñar, implementar, certificar y mantener.
-                </p>
-              </div>
+          <div class="support-shell">
+            <div class="support-heading section-heading compact" data-reveal="up">
+              <p class="eyebrow">Soporte técnico</p>
+              <h2>Del diagnóstico a la continuidad operativa</h2>
+              <p>Transformamos necesidades técnicas en soluciones operativas de principio a fin.</p>
+            </div>
 
-              <div class="support-visual" data-reveal="left" aria-label="Visual técnico de soporte BYSING">
-                <span class="support-glow"></span>
-                <div class="support-laptop">
-                  <div class="support-screen">
-                    <span class="screen-panel-depth"></span>
-                    <span class="screen-node node-one"></span>
-                    <span class="screen-node node-two"></span>
-                    <span class="screen-node node-three"></span>
-                    <span class="screen-line line-one"></span>
-                    <span class="screen-line line-two"></span>
-                  </div>
-                  <div class="support-base"></div>
+            <div class="support-dashboard" data-reveal="up" aria-label="Panel holográfico de soporte BYSING">
+              <div class="support-dashboard-panel">
+                <span class="support-panel-shine"></span>
+                <svg class="support-flow-map" viewBox="0 0 1000 520" aria-hidden="true" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="supportFlowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#7dd3fc" stop-opacity="0.14"></stop>
+                      <stop offset="48%" stop-color="#8be9ff" stop-opacity="0.95"></stop>
+                      <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.14"></stop>
+                    </linearGradient>
+                    <filter id="supportFlowGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="4" result="blur"></feGaussianBlur>
+                      <feMerge>
+                        <feMergeNode in="blur"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  <path id="flowPathOne" class="support-flow-link flow-link--diag-design" d="M 252 146 C 286 164, 286 250, 286 250 C 386 250, 432 238, 500 238"></path>
+                  <path id="flowPathTwo" class="support-flow-link flow-link--design-implementation" d="M 286 308 C 392 308, 422 308, 500 308 C 588 308, 632 280, 718 280"></path>
+                  <path id="flowPathThree" class="support-flow-link flow-link--implementation-support" d="M 718 338 C 628 338, 588 394, 500 394 C 412 394, 364 434, 286 434"></path>
+                  <circle class="support-flow-dot dot-one" r="4.5" filter="url(#supportFlowGlow)">
+                    <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
+                      <mpath href="#flowPathOne"></mpath>
+                    </animateMotion>
+                  </circle>
+                  <circle class="support-flow-dot dot-two" r="4.5" filter="url(#supportFlowGlow)">
+                    <animateMotion dur="16s" repeatCount="indefinite" rotate="auto">
+                      <mpath href="#flowPathTwo"></mpath>
+                    </animateMotion>
+                  </circle>
+                  <circle class="support-flow-dot dot-three" r="4.5" filter="url(#supportFlowGlow)">
+                    <animateMotion dur="18s" repeatCount="indefinite" rotate="auto">
+                      <mpath href="#flowPathThree"></mpath>
+                    </animateMotion>
+                  </circle>
+                </svg>
+
+                <div class="support-panel-side support-panel-left">
+                  <span class="support-grid-overlay"></span>
+                  <span class="support-connector connector-one"></span>
+                  <span class="support-connector connector-two"></span>
+                  <span class="support-connector connector-three"></span>
+                  <span class="support-node-glow node-one"></span>
+                  <span class="support-node-glow node-two"></span>
+                  <span class="support-node-glow node-three"></span>
+                  <span class="support-particle particle-one"></span>
+                  <span class="support-particle particle-two"></span>
+                  <span class="support-particle particle-three"></span>
+                  <span class="support-particle particle-four"></span>
+
+                  <article class="support-panel-card" data-step="diagnosis" data-reveal="up">
+                    <div class="support-panel-card-head">
+                      <span class="support-icon">
+                        <i data-lucide="search"></i>
+                      </span>
+                      <span class="support-step-badge">01</span>
+                    </div>
+                    <span class="support-card-kicker">Assessment operativo</span>
+                    <h3>Diagnóstico</h3>
+                    <p>Evaluación de necesidades y riesgos.</p>
+                  </article>
+                  <article class="support-panel-card" data-step="design" data-reveal="up">
+                    <div class="support-panel-card-head">
+                      <span class="support-icon">
+                        <i data-lucide="layout-template"></i>
+                      </span>
+                      <span class="support-step-badge">02</span>
+                    </div>
+                    <span class="support-card-kicker">Arquitectura aplicada</span>
+                    <h3>Diseño</h3>
+                    <p>Selección y planificación de recursos.</p>
+                  </article>
                 </div>
-                <span class="support-depth-card depth-one"></span>
-                <span class="support-depth-card depth-two"></span>
-                <span class="support-gear gear-one"><i data-lucide="settings"></i></span>
-                <span class="support-gear gear-two"><i data-lucide="cog"></i></span>
-                <span class="support-gear gear-three"><i data-lucide="settings-2"></i></span>
+
+                <div class="support-panel-core">
+                  <span class="support-core-orbit orbit-one"></span>
+                  <span class="support-core-orbit orbit-two"></span>
+                  <span class="support-core-orbit orbit-three"></span>
+                  <span class="support-core-pulse"></span>
+                  <span class="support-core-particle core-particle-one"></span>
+                  <span class="support-core-particle core-particle-two"></span>
+                  <span class="support-core-particle core-particle-three"></span>
+                  <span class="support-core-particle core-particle-four"></span>
+                  <span class="support-core-icon">
+                    <i data-lucide="monitor-cog"></i>
+                  </span>
+                  <div class="support-core-hud" aria-hidden="true">
+                    <span class="support-core-kicker">Centro de operaciÃ³n</span>
+                    <strong class="support-core-title">Recursos asignados</strong>
+                  </div>
+                  <div class="support-core-status" aria-live="polite">
+                    <span class="support-status-item is-active">● DiagnÃ³stico activo</span>
+                    <span class="support-status-item">● Recursos asignados</span>
+                    <span class="support-status-item">● Despliegue listo</span>
+                    <span class="support-status-item">● Monitoreo continuo</span>
+                  </div>
+                </div>
+
+                <div class="support-panel-side support-panel-right">
+                  <article class="support-panel-card" data-step="implementation" data-reveal="up">
+                    <div class="support-panel-card-head">
+                      <span class="support-icon">
+                        <i data-lucide="rocket"></i>
+                      </span>
+                      <span class="support-step-badge">03</span>
+                    </div>
+                    <span class="support-card-kicker">Despliegue controlado</span>
+                    <h3>Implementación</h3>
+                    <p>Instalación y configuración.</p>
+                  </article>
+                  <article class="support-panel-card" data-step="support" data-reveal="up">
+                    <div class="support-panel-card-head">
+                      <span class="support-icon">
+                        <i data-lucide="headphones"></i>
+                      </span>
+                      <span class="support-step-badge">04</span>
+                    </div>
+                    <span class="support-card-kicker">Continuidad garantizada</span>
+                    <h3>Soporte continuo</h3>
+                    <p>Mantenimiento y continuidad operativa.</p>
+                  </article>
+                </div>
               </div>
             </div>
 
-            <div class="process-list">
-              <div class="process-step" data-reveal="up">
-                <span>01</span>
-                <h3>Levantamiento</h3>
-                <p>Revisión de necesidades, capacidad, puntos de red, equipos y riesgos operativos.</p>
-              </div>
-              <div class="process-step" data-reveal="up">
-                <span>02</span>
-                <h3>Diseño y provisión</h3>
-                <p>Selección de marcas, materiales, equipos, suministros y alcance de instalación.</p>
-              </div>
-              <div class="process-step" data-reveal="up">
-                <span>03</span>
-                <h3>Implementación</h3>
-                <p>Instalación, organización de racks, fusión de fibra, configuración y pruebas.</p>
-              </div>
-              <div class="process-step" data-reveal="up">
-                <span>04</span>
-                <h3>Mantenimiento</h3>
-                <p>Soporte técnico para computación, impresoras, red, consumibles y continuidad.</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
