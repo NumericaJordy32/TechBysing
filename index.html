@@ -602,11 +602,14 @@
           <div class="section-heading" data-reveal="up">
             <p class="eyebrow dark">Contacto</p>
             <h2>Cuéntanos qué necesita tu infraestructura</h2>
-            <p>Completa el formulario y se preparará un correo con tu solicitud.</p>
+            <p>Completa el formulario y lo enviaremos directamente al correo de BYSING.</p>
           </div>
 
           <div class="contact-grid">
             <form class="contact-card email-card needs-validation" id="emailForm" novalidate data-reveal="up">
+              <input type="hidden" name="_subject" value="Nueva solicitud web BYSING">
+              <input type="hidden" name="_template" value="table">
+              <input type="text" name="_honey" class="d-none" tabindex="-1" autocomplete="off">
               <div class="form-title">
                 <i data-lucide="mail"></i>
                 <h3>Enviar solicitud por correo</h3>
@@ -620,7 +623,11 @@
                   <label class="form-label" for="emailCompany">Empresa</label>
                   <input class="form-control" id="emailCompany" name="company">
                 </div>
-                <div class="col-12">
+                <div class="col-md-6">
+                  <label class="form-label" for="emailAddress">Correo</label>
+                  <input class="form-control" id="emailAddress" name="email" type="email" required>
+                </div>
+                <div class="col-md-6">
                   <label class="form-label" for="emailNeed">Necesidad principal</label>
                   <select class="form-select" id="emailNeed" name="need" required>
                     <option value="">Selecciona una opción</option>
@@ -638,7 +645,7 @@
               </div>
               <button class="btn btn-primary action-btn mt-4" type="submit">
                 <i data-lucide="send"></i>
-                Preparar correo
+                Enviar solicitud
               </button>
               <p class="form-status" id="emailStatus" role="status" aria-live="polite"></p>
             </form>

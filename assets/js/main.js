@@ -15,11 +15,13 @@ const brandLockup = document.querySelector(".brand-lockup");
 const productCards = document.querySelectorAll(".product-card");
 const emailForm = document.getElementById("emailForm");
 const emailStatus = document.getElementById("emailStatus");
+const emailSubmitButton = emailForm?.querySelector('button[type="submit"]');
 const revealItems = document.querySelectorAll("[data-reveal]");
 const heroStage = document.querySelector(".hero-stage");
 const parallaxItems = heroStage ? heroStage.querySelectorAll("[data-parallax]") : [];
 
 const contactEmail = "ssotomayor@bysing.com";
+const contactEndpoint = `https://formsubmit.co/ajax/${contactEmail}`;
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 document.body.classList.add("is-loading");
@@ -270,30 +272,56 @@ const fieldValue = (form, name) => {
   return field ? field.value.trim() : "";
 };
 
-emailForm?.addEventListener("submit", (event) => {
+emailForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   emailForm.classList.add("was-validated");
 
   if (!emailForm.checkValidity()) {
-    emailStatus.textContent = "Completa los campos requeridos para preparar el correo.";
+    emailStatus.textContent = "Completa los campos requeridos para enviar la solicitud.";
     return;
   }
 
   const name = fieldValue(emailForm, "name");
+  const email = fieldValue(emailForm, "email");
   const company = fieldValue(emailForm, "company") || "No especificada";
   const need = fieldValue(emailForm, "need");
   const message = fieldValue(emailForm, "message");
-  const subject = encodeURIComponent(`Solicitud web BYSING - ${need}`);
-  const body = encodeURIComponent(
-    [
-      "Hola BYSING, quiero información sobre sus servicios.",
-      `Nombre: ${name}`,
-      `Empresa: ${company}`,
-      `Necesidad: ${need}`,
-      `Mensaje: ${message}`
-    ].join("\n")
-  );
+  const formData = new FormData(emailForm);
 
-  emailStatus.textContent = "Abriendo tu correo con la solicitud preparada.";
-  window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+  formData.set("_subject", `Nueva solicitud web BYSING - ${need}`);
+  formData.set("name", name);
+  formData.set("email", email);
+  formData.set("company", company);
+  formData.set("need", need);
+  formData.set("message", message);
+
+  emailStatus.textContent = "Enviando solicitud...";
+  if (emailSubmitButton) {
+    emailSubmitButton.disabled = true;
+  }
+
+  try {
+    const response = await fetch(contactEndpoint, {
+      method: "POST",
+      headers: {
+        Accept: "application/json"
+      },
+      body: formData
+    });
+
+    if (!response.ok) {
+      throw new Error(`Form submission failed with status ${response.status}`);
+    }
+
+    emailForm.reset();
+    emailForm.classList.remove("was-validated");
+    emailStatus.textContent = "Solicitud enviada. Te responderemos pronto al correo registrado.";
+  } catch (error) {
+    emailStatus.textContent = "No pudimos enviar la solicitud en este momento. Intenta nuevamente en unos minutos.";
+    console.error("Error sending contact form:", error);
+  } finally {
+    if (emailSubmitButton) {
+      emailSubmitButton.disabled = false;
+    }
+  }
 });
